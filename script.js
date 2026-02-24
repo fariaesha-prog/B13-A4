@@ -130,3 +130,7 @@ unction initializeCardButtons() {
         });
     });
 }
+
+initializeJobsArray();
+initializeCardButtons();
+calculateCount();
