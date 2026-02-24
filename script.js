@@ -108,3 +108,14 @@ unction initializeCardButtons() {
                 filterJobs(activeBtn.id.replace('-filter-btn', ''));
             }
         });
+
+         rejectedBtn.addEventListener('click', () => {
+            job.status = 'Rejected';
+            statusBadge.innerText = 'Rejected';
+            calculateCount();
+            // Reapply current filter if not on "All"
+            const activeBtn = document.querySelector('[class*="bg-blue-500"]');
+            if (activeBtn.id !== 'all-filter-btn') {
+                filterJobs(activeBtn.id.replace('-filter-btn', ''));
+            }
+        });
