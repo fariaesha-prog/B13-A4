@@ -119,3 +119,14 @@ unction initializeCardButtons() {
                 filterJobs(activeBtn.id.replace('-filter-btn', ''));
             }
         });
+
+        deleteBtn.addEventListener('click', () => {
+            job.card.remove();
+            jobsData = jobsData.filter(j => j.id !== job.id);
+            calculateCount();
+            // Reapply current filter if not on "All"
+            const activeBtn = document.querySelector('[class*="bg-blue-500"]');
+            filterJobs(activeBtn ? activeBtn.id.replace('-filter-btn', '') : 'all');
+        });
+    });
+}
