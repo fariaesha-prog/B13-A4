@@ -76,3 +76,18 @@ function filterJobs(status) {
         }
     });
 
+    if (visibleCount === 0) {
+        showEmptyState(status);
+    } else {
+        removeEmptyState();
+    }
+}
+
+function showEmptyState(status) {
+    emptyState.classList.remove('hidden');
+}
+
+function removeEmptyState() {
+    emptyState.classList.add('hidden');
+}
+
