@@ -10,10 +10,10 @@ const jobList = document.getElementById('job-list');
 const emptyState = document.getElementById('emptyState');
 const mainContainer = document.querySelector('main');
 
-// Array to store job statuses
+
 let jobsData = [];
 
-// Initialize jobs array from existing cards
+
 function initializeJobsArray() {
     const cards = document.querySelectorAll('.job-card');
     jobsData = Array.from(cards).map((card, index) => ({
@@ -25,11 +25,11 @@ function initializeJobsArray() {
 }
 
 function calculateCount() {
+    const totalCards = jobsData.length;
     const interviewed = jobsData.filter(job => job.status.toLowerCase() === 'interview').length;
     const rejected = jobsData.filter(job => job.status.toLowerCase() === 'rejected').length;
-    const totalMarked = interviewed + rejected;
     
-    total.innerText = totalMarked;
+    total.innerText = totalCards;
     interviewCount.innerText = interviewed;
     rejectedCount.innerText = rejected;
 }
@@ -91,7 +91,7 @@ function removeEmptyState() {
     emptyState.classList.add('hidden');
 }
 
-unction initializeCardButtons() {
+function initializeCardButtons() {
     jobsData.forEach(job => {
         const interviewBtn = job.card.querySelector('.interview-btn');
         const rejectedBtn = job.card.querySelector('.rejected-btn');
@@ -102,7 +102,6 @@ unction initializeCardButtons() {
             job.status = 'Interview';
             statusBadge.innerText = 'Interview';
             calculateCount();
-            // Reapply current filter if not on "All"
             const activeBtn = document.querySelector('[class*="bg-blue-500"]');
             if (activeBtn.id !== 'all-filter-btn') {
                 filterJobs(activeBtn.id.replace('-filter-btn', ''));
@@ -113,7 +112,6 @@ unction initializeCardButtons() {
             job.status = 'Rejected';
             statusBadge.innerText = 'Rejected';
             calculateCount();
-            // Reapply current filter if not on "All"
             const activeBtn = document.querySelector('[class*="bg-blue-500"]');
             if (activeBtn.id !== 'all-filter-btn') {
                 filterJobs(activeBtn.id.replace('-filter-btn', ''));
@@ -124,7 +122,6 @@ unction initializeCardButtons() {
             job.card.remove();
             jobsData = jobsData.filter(j => j.id !== job.id);
             calculateCount();
-            // Reapply current filter if not on "All"
             const activeBtn = document.querySelector('[class*="bg-blue-500"]');
             filterJobs(activeBtn ? activeBtn.id.replace('-filter-btn', '') : 'all');
         });
