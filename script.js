@@ -91,3 +91,20 @@ function removeEmptyState() {
     emptyState.classList.add('hidden');
 }
 
+unction initializeCardButtons() {
+    jobsData.forEach(job => {
+        const interviewBtn = job.card.querySelector('.interview-btn');
+        const rejectedBtn = job.card.querySelector('.rejected-btn');
+        const deleteBtn = job.card.querySelector('.btn-delete');
+        const statusBadge = job.card.querySelector('.status-badge');
+        
+        interviewBtn.addEventListener('click', () => {
+            job.status = 'Interview';
+            statusBadge.innerText = 'Interview';
+            calculateCount();
+            // Reapply current filter if not on "All"
+            const activeBtn = document.querySelector('[class*="bg-blue-500"]');
+            if (activeBtn.id !== 'all-filter-btn') {
+                filterJobs(activeBtn.id.replace('-filter-btn', ''));
+            }
+        });
