@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Job Tracker</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="w-[80%] mx-auto">
+        <!-- Title -->
+        <h1 class="text-2xl text-blue-950 font-bold mb-6">Job Application Tracker</h1>
+        <!--Header Grid-->
+        <div class="grid grid-cols-3 gap-20">
+            <div class="bg-white p-5 rounded-lg shadow-sm">
+                <p>Total</p>
+                <p id="total" class="text-blue-950 font-bold">0</p>
+            </div>
+
+            <div class="bg-white p-5 rounded-lg shadow-sm">
+                <p>Interview</p>
+                <p id="interviewCount" class="text-green-600 font-bold">0</p>
+            </div>
+
+            <div class="bg-white p-5 rounded-lg shadow-sm">
+                <p>Rejected</p>
+                <p id="rejectedCount" class="text-red-600 font-bold">0</p>
+            </div>
+        </div>
+    </header>
+
+    <hr class="w-[80%] mx-auto my-6 text-gray-300">
+
+    <main class="w-[80%] mx-auto">
+       <div class="flex justify-between items-center mb-4">
+        <h2 class="text-blue-950 font-semibold">Available Jobs</h2>
+        <span id="tabCount" class="text-gray-500">8 jobs</span>
+       </div> 
+
+       <!--Buttons-->
+       <div>
+        <button></button>
+        <button>
+        </button>
+       </div>
+        
+
+
+    </main>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
