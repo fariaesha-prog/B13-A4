@@ -7,12 +7,31 @@ const interviewFilterBtn = document.getElementById('interview-filter-btn');
 const rejectedFilterBtn = document.getElementById('rejected-filter-btn');
 
 const jobList = document.getElementById('job-list');
+const emptyState = document.getElementById('emptyState');
 const mainContainer = document.querySelector('main');
 
+// Array to store job statuses
+let jobsData = [];
+
+// Initialize jobs array from existing cards
+function initializeJobsArray() {
+    const cards = document.querySelectorAll('.job-card');
+    jobsData = Array.from(cards).map((card, index) => ({
+        id: index,
+        card: card,
+        status: 'not applied',
+        title: card.querySelector('.jobTitle').innerText
+    }));
+}
+
 function calculateCount() {
-    total.innerText = jobList.children.length
-    interviewCount.innerText = document.querySelectorAll('.status-badge[data-status="Interview"]').length;
-    rejectedCount.innerText = document.querySelectorAll('.status-badge[data-status="Rejected"]').length;
+    const interviewed = jobsData.filter(job => job.status.toLowerCase() === 'interview').length;
+    const rejected = jobsData.filter(job => job.status.toLowerCase() === 'rejected').length;
+    const totalMarked = interviewed + rejected;
+    
+    total.innerText = totalMarked;
+    interviewCount.innerText = interviewed;
+    rejectedCount.innerText = rejected;
 }
 
 function toggleStyle(btnId) {
@@ -27,5 +46,33 @@ function toggleStyle(btnId) {
             btn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
         }
     });
+    
+    if (btnId === 'all-filter-btn') {
+        filterJobs('all');
+    } else if (btnId === 'interview-filter-btn') {
+        filterJobs('interview');
+    } else if (btnId === 'rejected-filter-btn') {
+        filterJobs('rejected');
+    }
 }
+
+function filterJobs(status) {
+    let visibleCount = 0;
+    
+    jobsData.forEach(job => {
+        const jobStatus = job.status.toLowerCase();
+        
+        if (status === 'all') {
+            job.card.style.display = 'flex';
+            visibleCount++;
+        } else if (status === 'interview' && jobStatus === 'interview') {
+            job.card.style.display = 'flex';
+            visibleCount++;
+        } else if (status === 'rejected' && jobStatus === 'rejected') {
+            job.card.style.display = 'flex';
+            visibleCount++;
+        } else {
+            job.card.style.display = 'none';
+        }
+    });
 
